@@ -1,17 +1,79 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>jQuery Boilerplate</title>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-		<script src="../src/jquery.boilerplate.js"></script>
+		<title>navsync</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
-		<div id="element"></div>
+    
+    <nav>
+        <div class="container">
+          <h1>NavSync</h1>
+          <div class="right">
+            <a href="#getting-started">Getting Started</a>
+            <a href="#examples">Examples</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+    </nav>
+    
+		<div id="#getting-started" class="container fullscreen">
+      <h1>Getting Started</h1>
+      <div class="row">
+        <div class="six columns">
+          <p>NavSync is an easy to use jQuery plugin that does the heavylifting for syncing your navigation to your content. All it requires is a semantically built navigation menu and a couple of lines of code, easy? Of course.</p>
+          <p>Don't believe me? This page is a playground for NavSync, simply scroll down or use the menu at the top of the page to get started!</p>
+        </div>
+        
+        <div class="six columns">
+          <p>This will be a code block</p>
+          <p>That's all it takes!</p>
+        </div>
+      </div>
+    </div>  
+    
+    <div id="#examples" class="u-full-width darkdiv">
+      <div class="container fullscreen">
+        <h1>Examples</h1>
+        <div class="row">
+          <div class="six columns">
+            <p>NavSync is an easy to use jQuery plugin that does the heavylifting for syncing your navigation to your content. All it requires is a semantically built navigation menu and a couple of lines of code, easy? Of course.</p>
+            <p>Don't believe me? This page is a playground for NavSync, simply scroll down or use the menu at the top of the page to get started!</p>
+          </div>
+
+          <div class="six columns">
+            <p>This will be a code block</p>
+            <p>That's all it takes!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="#contact" class="container fullscreen">
+      <div class="row">
+        <div class="six columns">
+          <h5>Project</h5>
+          <p>To report bugs, problems, or other inconsistencies you can find the GitHub repo for the project below.</p>
+        </div>
+        
+        <div class="six columns">
+          <h5>Contact Me</h5>
+          <p>You can contact me via my GitHub page, social media, or my personal email address.</p>
+        </div>
+      </div>
+    </div> 
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="../src/navsync.js"></script>
 		<script>
 			$(function() {
-				$("#element").defaultPluginName({
-					propertyName: "a custom value"
-				});
+				$(document).ready(function() {
+          $("nav").navSync();
+        });
 			});
 		</script>
 	</body>

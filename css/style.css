@@ -1,0 +1,65 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+.navsync-menu-highlight {
+  background-color: #008B8B; }
+
+body {
+  background-color: #f7f7f7;
+  color: #333333;
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box; }
+
+h5 {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700; }
+  h5:after {
+    content: ' ';
+    width: 200px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #bfbfbf;
+    height: 1px;
+    display: block; }
+
+nav {
+  height: 90px;
+  background-color: white;
+  line-height: 90px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 5px 3px rgba(0, 0, 0, 0.03); }
+
+nav a {
+  text-decoration: none;
+  font-weight: 700;
+  padding: 12px 15px 12px 15px;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  color: #333333; }
+  nav a:hover {
+    color: white;
+    background-color: #595959; }
+
+nav h1 {
+  display: inline;
+  margin: 0;
+  font-weight: 600; }
+
+p {
+  line-height: 2.6666666667rem;
+  color: #595959; }
+
+.right {
+  float: right;
+  display: inline;
+  clear: left; }
+
+.fullscreen {
+  min-height: 100vh;
+  padding-top: 110px;
+  padding-bottom: 110px; }
+
+.darkdiv {
+  background-color: #333333;
+  color: #f7f7f7; }
