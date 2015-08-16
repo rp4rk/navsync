@@ -1,13 +1,3 @@
-/*
- *  jquery-boilerplate - v3.4.0
- *  A jump-start for jQuery plugins development.
- *  http://jqueryboilerplate.com
- *
- *  Made by Zeno Rocha
- *  Under MIT License
- */
-// the semi-colon before function invocation is a safety net against concatenated
-// scripts and/or other plugins which may not be closed properly.
 ;(function ( $, window, document, undefined ) {
 
 	"use strict";
@@ -25,7 +15,8 @@
 		var pluginName = "navSync",
 				defaults = {
 				highlightClass: "navsync-menu-highlight",
-        ignoreNavHeight: false,
+        ignoreNavHeightHighlight: false,
+        ignoreNavHeightScroll: false,
 				animationTime: 300
 		};
 
@@ -45,16 +36,17 @@
 		// Avoid Plugin.prototype conflicts
 		$.extend(Plugin.prototype, {
 				init: function () {
+          //Set our important items
           var navSyncSelection = $(this.element);
-          //Header offset
-          var headerOffset = this._defaults.ignoreNavHeight ? 0 : navSyncSelection.height() ;
+          var animationTime = this._defaults.animationTime;
+          var headerOffset = this._defaults.ignoreNavHeightHighlight ? 0 : navSyncSelection.height();
+          var scrollOffset = this._defaults.ignoreNavHeightScroll ? 0 : navSyncSelection.height();
           var highlightClass = this._defaults.highlightClass;
-          
-          //Cache our information into an array
-          //Structure is [div, topDist, bottomDist, menuButton]
           var watchedDivs = [];
           
+          //Find our links
           navSyncSelection.find("a").each(function() {
+            
             var hrefString = $(this).attr("href");
             
             if (hrefString.charAt(0) === "#") {
@@ -62,6 +54,16 @@
              
               watchedDivs.push([anchor, anchor.offset().top, anchor.offset().top + anchor.outerHeight(true), this]); 
             }
+            
+          }).click(function(e) { //Handle presses
+            
+            e.preventDefault();
+            
+            //Scroll to element
+            $("html, body").animate({
+                scrollTop: $($(this).attr("href")).offset().top-scrollOffset
+            }, animationTime);
+            
           });
           
           //Highlight our first div
@@ -70,7 +72,6 @@
           //Scroll hook, check where we're at and determine highlight           
           $(window).scroll(function() {
             var scrollTop = $(window).scrollTop();
-            console.log(scrollTop);
             var i = 0;
 
             for (i=0; i<watchedDivs.length; i++) {
@@ -81,8 +82,9 @@
                 $(watchedDivs[i][3]).removeClass(highlightClass);
               }
             }
-            
           });
+          
+        
           
 				}
 		});
