@@ -1,0 +1,21 @@
+{
+	"name": "navsync",
+	"version": "0.0.1",
+	"homepage": "https://github.com/rp4rk/navsync",
+	"authors": [
+		"Ryan Park <admin@ryanpark.co.uk>"
+	],
+	"description": "Syncs navigation menus to page anchors",
+	"main": "src/navsync.js",
+	"keywords": [
+		"jquery",
+		"plugin",
+		"navsync",
+		"jquery-plugin",
+		"navigation",
+    "anchors",
+    "scrollto",
+    "scroll"
+	],
+	"license": "MIT"
+}
