@@ -1,3 +1,19 @@
+/*
+ *  navsync - v0.0.1
+ *  Syncs navigation menus to page anchors
+ *  https://github.com/rp4rk/navsync
+ *
+ *  Made by Ryan Park
+ *  Under MIT License
+ */
+/*
+ *  jquery-boilerplate - v3.4.0
+ *  A jump-start for jQuery plugins development.
+ *  http://jqueryboilerplate.com
+ *
+ *  Made by Zeno Rocha
+ *  Under MIT License
+ */
 // the semi-colon before function invocation is a safety net against concatenated
 // scripts and/or other plugins which may not be closed properly.
 ;(function ( $, window, document, undefined ) {
@@ -14,9 +30,11 @@
 		// minified (especially when both are regularly referenced in your plugin).
 
 		// Create the defaults once
-		var pluginName = "defaultPluginName",
+		var pluginName = "navSync",
 				defaults = {
-				propertyName: "value"
+				animationTime: 300,
+				highlightClass: "navsync-menu-highlight",
+				scrollOnLoad: true
 		};
 
 		// The actual plugin constructor
@@ -35,13 +53,15 @@
 		// Avoid Plugin.prototype conflicts
 		$.extend(Plugin.prototype, {
 				init: function () {
-						// Place initialization logic here
-						// You already have access to the DOM element and
-						// the options via the instance, e.g. this.element
-						// and this.settings
-						// you can add more functions like the one below and
-						// call them like so: this.yourOtherFunction(this.element, this.settings).
-						console.log("xD");
+          
+          //Cache our menu items into array
+          var watchedDivs = [];
+          
+          $("nav a").each(function() {
+            //Structure is [div, topDist, bottomDist, menuButton]
+            watchedDivs.push([$(this).attr("data-navsync"), 0, 0, this]);  
+          });
+          
 				},
 				yourOtherFunction: function () {
 						// some logic

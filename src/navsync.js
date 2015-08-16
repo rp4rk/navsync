@@ -22,7 +22,7 @@
 		// minified (especially when both are regularly referenced in your plugin).
 
 		// Create the defaults once
-		var pluginName = "navsync",
+		var pluginName = "navSync",
 				defaults = {
 				animationTime: 300,
 				highlightClass: "navsync-menu-highlight",
@@ -45,13 +45,16 @@
 		// Avoid Plugin.prototype conflicts
 		$.extend(Plugin.prototype, {
 				init: function () {
-						// Place initialization logic here
-						// You already have access to the DOM element and
-						// the options via the instance, e.g. this.element
-						// and this.settings
-						// you can add more functions like the one below and
-						// call them like so: this.yourOtherFunction(this.element, this.settings).
-						console.log("xD");
+          
+          //Cache our menu items into array
+          var watchedDivs = [];
+          
+          $("nav a").each(function() {
+            var hrefString = $(this).attr("html");
+            //Structure is [div, topDist, bottomDist, menuButton]
+            watchedDivs.push([$(this).attr("data-navsync"), 0, 0, this]);  
+          });
+          
 				},
 				yourOtherFunction: function () {
 						// some logic

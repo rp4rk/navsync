@@ -23,14 +23,14 @@ module.exports = function(grunt) {
 				banner: "<%= meta.banner %>"
 			},
 			dist: {
-				src: ["src/jquery.boilerplate.js"],
-				dest: "dist/jquery.boilerplate.js"
+				src: ["src/navsync.js"],
+				dest: "dist/navsync.js"
 			}
 		},
 
 		// Lint definitions
 		jshint: {
-			files: ["src/jquery.boilerplate.js"],
+			files: ["src/navsync.js"],
 			options: {
 				jshintrc: ".jshintrc"
 			}
@@ -39,19 +39,31 @@ module.exports = function(grunt) {
 		// Minify definitions
 		uglify: {
 			my_target: {
-				src: ["dist/jquery.boilerplate.js"],
-				dest: "dist/jquery.boilerplate.min.js"
+				src: ["dist/navsync.js"],
+				dest: "dist/navsync.min.js"
 			},
 			options: {
 				banner: "<%= meta.banner %>"
 			}
 		},
+    
+    //sass
+    sass: {
+      options: {
+          sourceMap: false
+      },
+      dist: {
+          files: {
+              'demo/css/style.css': 'demo/css/src/style.scss'
+          }
+      }
+    },
 
 		// watch for changes to source
 		// Better than calling grunt a million times
 		// (call 'grunt watch')
 		watch: {
-		    files: ['src/*'],
+		    files: ['src/*', 'demo/css/src/*'],
 		    tasks: ['default']
 		}
 
@@ -60,11 +72,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-concat");
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
-	grunt.loadNpmTasks("grunt-contrib-coffee");
+	grunt.loadNpmTasks("grunt-sass");
 	grunt.loadNpmTasks("grunt-contrib-watch");
+  
 
 	grunt.registerTask("build", ["concat", "uglify"]);
-	grunt.registerTask("default", ["jshint", "build"]);
+	grunt.registerTask("default", ["sass", "jshint", "build"]);
 	grunt.registerTask("travis", ["default"]);
 
 };
