@@ -24,9 +24,9 @@
 		// Create the defaults once
 		var pluginName = "navSync",
 				defaults = {
-				animationTime: 300,
 				highlightClass: "navsync-menu-highlight",
-				scrollOnLoad: true
+        ignoreNavHeight: false,
+				animationTime: 300
 		};
 
 		// The actual plugin constructor
@@ -45,19 +45,45 @@
 		// Avoid Plugin.prototype conflicts
 		$.extend(Plugin.prototype, {
 				init: function () {
+          var navSyncSelection = $(this.element);
+          //Header offset
+          var headerOffset = this._defaults.ignoreNavHeight ? 0 : navSyncSelection.height() ;
+          var highlightClass = this._defaults.highlightClass;
           
-          //Cache our menu items into array
+          //Cache our information into an array
+          //Structure is [div, topDist, bottomDist, menuButton]
           var watchedDivs = [];
           
-          $("nav a").each(function() {
-            var hrefString = $(this).attr("html");
-            //Structure is [div, topDist, bottomDist, menuButton]
-            watchedDivs.push([$(this).attr("data-navsync"), 0, 0, this]);  
+          navSyncSelection.find("a").each(function() {
+            var hrefString = $(this).attr("href");
+            
+            if (hrefString.charAt(0) === "#") {
+              var anchor = $($(this).attr("href"));
+             
+              watchedDivs.push([anchor, anchor.offset().top, anchor.offset().top + anchor.outerHeight(true), this]); 
+            }
           });
           
-				},
-				yourOtherFunction: function () {
-						// some logic
+          //Highlight our first div
+          $(watchedDivs[0][3]).addClass(highlightClass);
+          
+          //Scroll hook, check where we're at and determine highlight           
+          $(window).scroll(function() {
+            var scrollTop = $(window).scrollTop();
+            console.log(scrollTop);
+            var i = 0;
+
+            for (i=0; i<watchedDivs.length; i++) {
+              if (scrollTop < watchedDivs[i][2]-headerOffset && scrollTop+headerOffset >= watchedDivs[i][1]) {
+                $(watchedDivs[i][3]).addClass(highlightClass);
+
+              } else {
+                $(watchedDivs[i][3]).removeClass(highlightClass);
+              }
+            }
+            
+          });
+          
 				}
 		});
 
