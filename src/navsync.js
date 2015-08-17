@@ -17,6 +17,7 @@
 				highlightClass: "navsync-menu-highlight",
         ignoreNavHeightHighlight: false,
         ignoreNavHeightScroll: false,
+        disableDynamicPosition: true,
 				animationTime: 300
 		};
 
@@ -42,6 +43,7 @@
           var animationTime = this.settings.animationTime ? this.settings.animationTime : this._defaults.animationTime;
           var headerOffset = this.settings.ignoreNavHeightHighlight ? 0 : navSyncSelection.height();
           var scrollOffset = this.settings.ignoreNavHeightScroll ? 0 : navSyncSelection.height();
+          var dynamicPosition = this.settings.disableDynamicPosition ? true : false;
           var highlightClass = this.settings.highlightClass ? this.settings.highlightClass : this._defaults.highlightClass;
           var watchedDivs = [];
           
@@ -75,6 +77,16 @@
           $(window).scroll(function() {
             var scrollTop = $(window).scrollTop();
             var i = 0;
+            var n = 0;
+            
+            //Recheck if enabled
+            if (dynamicPosition) {
+              for (n=0; n<watchedDivs.length; n++) {
+                watchedDivs[n][1] = watchedDivs[n][0].offset().top;
+                watchedDivs[n][2] = watchedDivs[n][0].offset().top + watchedDivs[n][0].outerHeight(true);
+              }
+            }
+            
 
             for (i=0; i<watchedDivs.length; i++) {
               if (scrollTop < watchedDivs[i][2]-headerOffset && scrollTop+headerOffset >= watchedDivs[i][1]) {
