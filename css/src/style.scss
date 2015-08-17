@@ -24,6 +24,19 @@ body {
   box-sizing: border-box;
 }
 
+.tag {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  padding: 4px;
+  background-color: $highlight;
+  font-weight: 700;
+  color: white;
+}
+
+.nocaps {
+  text-transform: none !important;
+}
+
 h5 {
   text-transform: uppercase;
   text-align: center;
@@ -92,5 +105,12 @@ p {
 
 .darkdiv {
   background-color: $dark;
-  color: $light;
+  
+  h1,h2,h3,h4,h5 {
+    color: $light;
+  }
+  
+  p {
+    color: darken($light, 40%);
+  }
 }

@@ -4,6 +4,7 @@
 		<title>NavSync</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
@@ -13,7 +14,7 @@
           <h1>NavSync</h1>
           <div class="right">
             <a href="#getting-started">Getting Started</a>
-            <a href="#examples">Examples</a>
+            <a href="#advanced">Advanced</a>
             <a href="#contact">Contact</a>
           </div>
         </div>
@@ -24,28 +25,55 @@
       <div class="row">
         <div class="six columns">
           <p>NavSync is an easy to use jQuery plugin that does the heavylifting for syncing your navigation to your content. All it requires is a semantically built navigation menu and a couple of lines of code, easy as pie.</p>
-          <p>Don't believe me? This page is a playground for NavSync, simply scroll down or use the menu at the top of the page to get started!</p>
+          <p>Don't believe me? The tiny code snippet below is all you need to get started with NavSync!</p>
+          <pre><code class="javascript">$(document).ready(function() {
+  $("nav").navSync();
+});</code></pre>
         </div>
-        
         <div class="six columns">
-          <p>This will be a code block</p>
-          <p>That's all it takes!</p>
+          <p>The HTML markup required is also extremely simple, see below for an example. Note that NavSync also supports external links, and will only trigger on elements with a valid anchor on the page. Link number 4 will load without problems.</p>
+          <pre><code class="html">&lt;nav&gt;
+  &lt;a href=&quot;#anchor-1&quot;&gt;First Link&lt;/a&gt;
+  &lt;a href=&quot;#anchor-2&quot;&gt;Second Link&lt;/a&gt;
+  &lt;a href=&quot;#anchor-3&quot;&gt;Third Link&lt;/a&gt;
+  &lt;a href=&quot;/example/&quot;&gt;Fourth Link&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
         </div>
       </div>
+
     </div>  
     
-    <div id="examples" class="u-full-width darkdiv">
+    <div id="advanced" class="u-full-width darkdiv">
       <div class="container fullscreen">
-        <h1>Examples</h1>
+        <h1>Advanced</h1>
         <div class="row">
-          <div class="six columns">
-            <p>NavSync is an easy to use jQuery plugin that does the heavylifting for syncing your navigation to your content. All it requires is a semantically built navigation menu and a couple of lines of code, easy? Of course.</p>
-            <p>Don't believe me? This page is a playground for NavSync, simply scroll down or use the menu at the top of the page to get started!</p>
-          </div>
-
-          <div class="six columns">
-            <p>This will be a code block</p>
-            <p>That's all it takes!</p>
+          <div class="twelve columns">
+            <p>NavSync has a number of parameters to make use of, for example the ability to tweak with scrolling behaviour, speed of scrolling animations, and the name of the class applied to your header items. These are available to let you customize the behaviour of NavSync to however you see fit.</p>
+            
+            <h5 class="nocaps">highlightClass</h5>
+            <span class="tag">Example</span>
+            <span class="tag">String</span>
+            <pre><code class="javascript">$("nav").navSync({hightlightClass : "highlight-menu-item"});</code></pre>
+            <p>Changes the default class from "navsync-menu-highlight" to "highlight-menu-item". The class is removed once the item has been scrolled past, and reapplied if the user scrolls up.</p>
+            
+            <h5 class="nocaps">animationTime</h5>
+            <span class="tag">Example</span>
+            <span class="tag">Integer</span>
+            <pre><code class="javascript">$("nav").navSync({animationTime : 800});</code></pre>
+            <p>Changes the default animation time for scrolling from 300ms to 800ms, generally scroll speeds of above a second are unwarranted. This should serve as a smell embellishment, not a super funky feature of your website.</p>    
+            
+            <h5 class="nocaps">ignoreNavHeightHighlight</h5>
+            <span class="tag">Example</span>
+            <span class="tag">Booleann</span>
+            <pre><code class="javascript">$("nav").navSync({ignoreNavHeightHighlight : true});</code></pre>
+            <p>By default NavSync will take into account the height of the header when applying the highlight class, if you aren't using a fixed header or simply dislike this behaviour this will turn it off.</p>     
+            
+            <h5 class="nocaps">ignoreNavHeightScroll</h5>
+            <span class="tag">Example</span>
+            <span class="tag">Booleann</span>
+            <pre><code class="javascript">$("nav").navSync({ignoreNavHeightScroll: true});</code></pre>
+            <p>By default NavSync will also take into account the height of the header when scrolling to a given anchor, this option can be disabled independently of the former and is advised if that is the case..</p>
+            
           </div>
         </div>
       </div>
@@ -69,10 +97,17 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="../src/navsync.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
 		<script>
+      hljs.initHighlightingOnLoad();
 			$(function() {
 				$(document).ready(function() {
-          $("nav").navSync();
+          $("nav").navSync({
+            highlightClass: "navsync-menu-highlight",
+            ignoreNavHeightHighlight: false,
+            ignoreNavHeightScroll: false,
+            animationTime: 1000
+          });
         });
 			});
 		</script>
