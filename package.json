@@ -14,10 +14,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jquery-boilerplate/jquery-boilerplate.git"
+    "url": "git+https://github.com/rp4rk/navsync.git"
   },
   "bugs": {
-    "url": "https://github.com/jquery-boilerplate/jquery-boilerplate/issues"
+    "url": "https://github.com/rp4rk/navsync"
   },
   "author": {
     "name": "Ryan Park",
@@ -34,8 +34,5 @@
     "grunt-contrib-uglify": "^0.8.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-sass": "^1.0.0"
-  },
-  "scripts": {
-    "test": "grunt travis --verbose"
   }
 }

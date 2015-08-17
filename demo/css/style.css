@@ -18,6 +18,9 @@
   [class*="entypo-"]:hover {
     color: #008B8B; }
 
+.darkdiv a {
+  color: #f7f7f7; }
+
 body {
   background-color: #f7f7f7;
   color: #333333;
