@@ -16,6 +16,7 @@
             <a href="#getting-started">Getting Started</a>
             <a href="#advanced">Advanced</a>
             <a href="#contact">Contact</a>
+            <a href="#download">Download</a>
           </div>
         </div>
     </nav>
@@ -26,12 +27,14 @@
         <div class="six columns">
           <p>NavSync is an easy to use jQuery plugin that does the heavylifting for syncing your navigation to your content. All it requires is a semantically built navigation menu and a couple of lines of code, easy as pie.</p>
           <p>Don't believe me? The tiny code snippet below is all you need to get started with NavSync!</p>
-          <pre><code class="javascript">$(document).ready(function() {
+          <span class="tag">Javascript</span>
+          <pre><code class="javascript">$(window).load(function() {
   $("nav").navSync();
 });</code></pre>
         </div>
         <div class="six columns">
           <p>The HTML markup required is also extremely simple, see below for an example. Note that NavSync also supports external links, and will only trigger on elements with a valid anchor on the page. Link number 4 will load without problems.</p>
+          <span class="tag">HTML</span>
           <pre><code class="html">&lt;nav&gt;
   &lt;a href=&quot;#anchor-1&quot;&gt;First Link&lt;/a&gt;
   &lt;a href=&quot;#anchor-2&quot;&gt;Second Link&lt;/a&gt;
@@ -64,15 +67,22 @@
             
             <h5 class="nocaps">ignoreNavHeightHighlight</h5>
             <span class="tag">Example</span>
-            <span class="tag">Booleann</span>
+            <span class="tag">Boolean</span>
             <pre><code class="javascript">$("nav").navSync({ignoreNavHeightHighlight : true});</code></pre>
             <p>By default NavSync will take into account the height of the header when applying the highlight class, if you aren't using a fixed header or simply dislike this behaviour this will turn it off.</p>     
             
             <h5 class="nocaps">ignoreNavHeightScroll</h5>
             <span class="tag">Example</span>
-            <span class="tag">Booleann</span>
+            <span class="tag">Boolean</span>
             <pre><code class="javascript">$("nav").navSync({ignoreNavHeightScroll: true});</code></pre>
-            <p>By default NavSync will also take into account the height of the header when scrolling to a given anchor, this option can be disabled independently of the former and is advised if that is the case..</p>
+            <p>By default NavSync will also take into account the height of the header when scrolling to a given anchor, this option can be disabled independently of the former option and is advised if that is the case.</p>   
+            
+            <h5 class="nocaps">disableDynamicPosition</h5>
+            <span class="tag">Example</span>
+            <span class="tag">Boolean</span>
+            <span class="tag">Performance Hungry Demon</span>
+            <pre><code class="javascript">$("nav").navSync({disableDynamicPosition: false});</code></pre>
+            <p>Enables dynamic position calculations, this is disabled by default for a VERY good reason. Only turn this on if you know what you're doing, or if you absolutely NEED positions calculated each scroll event.</p>
             
           </div>
         </div>
@@ -84,14 +94,51 @@
         <div class="six columns">
           <h5>Project</h5>
           <p>To report bugs, problems, or other inconsistencies you can find the GitHub repo for the project below.</p>
+          
         </div>
         
         <div class="six columns">
           <h5>Contact Me</h5>
-          <p>You can contact me via my GitHub page, social media, or my personal email address.</p>
+          <p>You can contact me via my GitHub page or social media, please do not report bugs through social media.</p>
+          
         </div>
       </div>
+      <div class="row">
+        <div class="six columns"><a href="https://github.com/rp4rk/navsync" target="_"><span class="entypo-github"></span></a></div>
+        <div class="six columns"><a href="https://twitter.com/rp4rk" target="_"><span class="entypo-twitter-circled"></span></a> </div>
+      </div>
     </div> 
+    
+    <div id="download" class="u-full-width darkdiv">
+      <div class="container fullscreen">
+        <div class="row">
+          <h5>Download</h5>
+          <div class="twelve columns flexcenter">
+            <p>NavSync is developed using my free time, I don't require a charge but any support is always appreciated. Feel free to buy me a beer :) </p>
+            
+            <form name="_xclick" action="https://www.paypal.com/us/cgi-bin/webscr" method="post">
+              <input type="hidden" name="cmd" value="_xclick" />
+              <input type="hidden" name="business" value="Ryan.2406@hotmail.co.uk" />
+              <input type="hidden" name="currency_code" value="GBP" />
+              <input type="hidden" name="item_name" value="NavSync" />
+              <input type="text" name="amount" value="" placeholder="Pay what you want!" />
+              <br>
+              <input style="margin-top: 20px;" type="image" src="img/paypal.png" border="0" name="submit"/>
+            </form>
+          </div> 
+          <div class="row">
+            <div class="four columns">
+              <h5>GitHub</h5>
+              <a href="https://github.com/rp4rk/navsync" target="_"><span class="entypo-github"></span></a>
+              </div>
+            <div class="four columns">
+              <h5>NPM</h5>
+              <a href="https://github.com/rp4rk/navsync" target="_"><span class="entypo-github"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
     
     
@@ -101,7 +148,7 @@
 		<script>
       hljs.initHighlightingOnLoad();
 			$(function() {
-				$(document).ready(function() {
+				$(window).load(function() {  
           $("nav").navSync({
             highlightClass: "navsync-menu-highlight",
             ignoreNavHeightHighlight: false,
