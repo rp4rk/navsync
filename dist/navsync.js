@@ -44,12 +44,13 @@
 		// Avoid Plugin.prototype conflicts
 		$.extend(Plugin.prototype, {
 				init: function () {
+          console.log(this.settings);
           //Set our important items
           var navSyncSelection = $(this.element);
-          var animationTime = this._defaults.animationTime;
-          var headerOffset = this._defaults.ignoreNavHeightHighlight ? 0 : navSyncSelection.height();
-          var scrollOffset = this._defaults.ignoreNavHeightScroll ? 0 : navSyncSelection.height();
-          var highlightClass = this._defaults.highlightClass;
+          var animationTime = this.settings.animationTime ? this.settings.animationTime : this._defaults.animationTime;
+          var headerOffset = this.settings.ignoreNavHeightHighlight ? 0 : navSyncSelection.height();
+          var scrollOffset = this.settings.ignoreNavHeightScroll ? 0 : navSyncSelection.height();
+          var highlightClass = this.settings.highlightClass ? this.settings.highlightClass : this._defaults.highlightClass;
           var watchedDivs = [];
           
           //Find our links
@@ -69,9 +70,10 @@
             
             //Scroll to element
             $("html, body").animate({
-                scrollTop: $($(this).attr("href")).offset().top-scrollOffset
+                scrollTop: $($(this).attr("href")).offset().top-scrollOffset+6
             }, animationTime);
             
+            console.log($($(this).attr("href")).offset().top);
           });
           
           //Highlight our first div
@@ -106,5 +108,6 @@
 						}
 				});
 		};
+  
 
 })( jQuery, window, document );
