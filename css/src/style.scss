@@ -9,11 +9,30 @@ $header-height: 90px;
 
 //Fonts
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
 
 //NavSync Highlight
 .navsync-menu-highlight {
   background-color: $highlight;
   color: white;
+}
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+  font-size: 12rem;
+  width: 100%;
+}
+
+[class*="entypo-"] {
+  text-align: center;
+  width: 100%;
+  display: block;
+  transition: color 0.3s ease-in-out;
+  
+  &:hover {
+    color: $highlight;
+  }
 }
 
 //General
@@ -22,6 +41,22 @@ body {
   color: $dark;
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: $dark;
+}
+
+form {
+  display: inline-block;
+  text-align: center;
+}
+
+.flexcenter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .tag {
