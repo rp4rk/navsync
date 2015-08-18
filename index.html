@@ -145,18 +145,13 @@
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="../src/navsync.js"></script>
+  <script src="/scripts/navsync.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
     $(function () {
       $(window).load(function () {
-        $("nav").navSync({
-          highlightClass: "navsync-menu-highlight",
-          ignoreNavHeightHighlight: false,
-          ignoreNavHeightScroll: false,
-          animationTime: 1000
-        });
+        $("nav").navSync();
       });
     });
   </script>
