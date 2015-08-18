@@ -1,0 +1,3 @@
+#git stpp demo origin gh-pages
+[alias]
+    stpp = subtree push --prefix
