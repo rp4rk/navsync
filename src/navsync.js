@@ -18,7 +18,7 @@
       ignoreNavHeightHighlight: false,
       ignoreNavHeightScroll: false,
       disableDynamicPosition: true,
-      animationTime: 300
+      animationTime: 500
     };
 
   // The actual plugin constructor

@@ -39,8 +39,10 @@ module.exports = function(grunt) {
 		// Minify definitions
 		uglify: {
 			my_target: {
-				src: ["dist/navsync.js"],
-				dest: "dist/navsync.min.js"
+        files: {
+          'dist/navsync.min.js': 'src/navsync.js',
+          'demo/scripts/navsync.min.js' : 'src/navsync.js'
+        }
 			},
 			options: {
 				banner: "<%= meta.banner %>"

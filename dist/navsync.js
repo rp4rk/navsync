@@ -26,7 +26,7 @@
       ignoreNavHeightHighlight: false,
       ignoreNavHeightScroll: false,
       disableDynamicPosition: true,
-      animationTime: 300
+      animationTime: 500
     };
 
   // The actual plugin constructor
@@ -45,6 +45,7 @@
   // Avoid Plugin.prototype conflicts
   $.extend(Plugin.prototype, {
     init: function () {
+      console.log(this.settings);
       //Set our important items
       var navSyncSelection = $(this.element);
       var animationTime = this.settings.animationTime ? this.settings.animationTime : this._defaults.animationTime;
@@ -73,6 +74,8 @@
         $("html, body").animate({
           scrollTop: $($(this).attr("href")).offset().top - scrollOffset + 6
         }, animationTime);
+
+        console.log($($(this).attr("href")).offset().top);
       });
 
       //Highlight our first div
@@ -93,7 +96,7 @@
             }
           }
 
-          //Check where we are in the page
+
           for (i = 0; i < watchedDivs.length; i++) {
             if (scrollTop < watchedDivs[i][2] - headerOffset && scrollTop + headerOffset >= watchedDivs[i][1]) {
               $(watchedDivs[i][3]).addClass(highlightClass);
