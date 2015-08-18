@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>NavSync</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+    
+    <nav>
+        <div class="container">
+          <h1>NavSync</h1>
+          <div class="right">
+            <a href="#getting-started">Getting Started</a>
+            <a href="#advanced">Advanced</a>
+            <a href="#contact">Contact</a>
+            <a href="#download">Download</a>
+          </div>
+        </div>
+    </nav>
+    
+		<div id="getting-started" class="container fullscreen">
+      <h1>Getting Started</h1>
+      <div class="row">
+        <div class="six columns">
+          <p>NavSync is an easy to use jQuery plugin that does the heavylifting for syncing your navigation to your content. All it requires is a semantically built navigation menu and a couple of lines of code, easy as pie.</p>
+          <p>Don't believe me? The tiny code snippet below is all you need to get started with NavSync!</p>
+          <span class="tag">Javascript</span>
+          <pre><code class="javascript">$(window).load(function() {
+  $("nav").navSync();
+});</code></pre>
+        </div>
+        <div class="six columns">
+          <p>The HTML markup required is also extremely simple, see below for an example. Note that NavSync also supports external links, and will only trigger on elements with a valid anchor on the page. Link number 4 will load without problems.</p>
+          <span class="tag">HTML</span>
+          <pre><code class="html">&lt;nav&gt;
+  &lt;a href=&quot;#anchor-1&quot;&gt;First Link&lt;/a&gt;
+  &lt;a href=&quot;#anchor-2&quot;&gt;Second Link&lt;/a&gt;
+  &lt;a href=&quot;#anchor-3&quot;&gt;Third Link&lt;/a&gt;
+  &lt;a href=&quot;/example/&quot;&gt;Fourth Link&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </div>
+
+    </div>  
+    
+    <div id="advanced" class="u-full-width darkdiv">
+      <div class="container fullscreen">
+        <h1>Advanced</h1>
+        <div class="row">
+          <div class="twelve columns">
+            <p>NavSync has a number of parameters to make use of, for example the ability to tweak with scrolling behaviour, speed of scrolling animations, and the name of the class applied to your header items. These are available to let you customize the behaviour of NavSync to however you see fit.</p>
+            
+            <h5 class="nocaps">highlightClass</h5>
+            <span class="tag">Example</span>
+            <span class="tag">String</span>
+            <pre><code class="javascript">$("nav").navSync({hightlightClass : "highlight-menu-item"});</code></pre>
+            <p>Changes the default class from "navsync-menu-highlight" to "highlight-menu-item". The class is removed once the item has been scrolled past, and reapplied if the user scrolls up.</p>
+            
+            <h5 class="nocaps">animationTime</h5>
+            <span class="tag">Example</span>
+            <span class="tag">Integer</span>
+            <pre><code class="javascript">$("nav").navSync({animationTime : 800});</code></pre>
+            <p>Changes the default animation time for scrolling from 300ms to 800ms, generally scroll speeds of above a second are unwarranted. This should serve as a smell embellishment, not a super funky feature of your website.</p>    
+            
+            <h5 class="nocaps">ignoreNavHeightHighlight</h5>
+            <span class="tag">Example</span>
+            <span class="tag">Boolean</span>
+            <pre><code class="javascript">$("nav").navSync({ignoreNavHeightHighlight : true});</code></pre>
+            <p>By default NavSync will take into account the height of the header when applying the highlight class, if you aren't using a fixed header or simply dislike this behaviour this will turn it off.</p>     
+            
+            <h5 class="nocaps">ignoreNavHeightScroll</h5>
+            <span class="tag">Example</span>
+            <span class="tag">Boolean</span>
+            <pre><code class="javascript">$("nav").navSync({ignoreNavHeightScroll: true});</code></pre>
+            <p>By default NavSync will also take into account the height of the header when scrolling to a given anchor, this option can be disabled independently of the former option and is advised if that is the case.</p>   
+            
+            <h5 class="nocaps">disableDynamicPosition</h5>
+            <span class="tag">Example</span>
+            <span class="tag">Boolean</span>
+            <span class="tag">Performance Hungry Demon</span>
+            <pre><code class="javascript">$("nav").navSync({disableDynamicPosition: false});</code></pre>
+            <p>Enables dynamic position calculations, this is disabled by default for a VERY good reason. Only turn this on if you know what you're doing, or if you absolutely NEED positions calculated each scroll event.</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="contact" class="container fullscreen">
+      <div class="row">
+        <div class="six columns">
+          <h5>Project</h5>
+          <p>To report bugs, problems, or other inconsistencies you can find the GitHub repo for the project below.</p>
+          
+        </div>
+        
+        <div class="six columns">
+          <h5>Contact Me</h5>
+          <p>You can contact me via my GitHub page or social media, please do not report bugs through social media.</p>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns"><a href="https://github.com/rp4rk/navsync" target="_"><span class="entypo-github"></span></a></div>
+        <div class="six columns"><a href="https://twitter.com/rp4rk" target="_"><span class="entypo-twitter-circled"></span></a> </div>
+      </div>
+    </div> 
+    
+    <div id="download" class="u-full-width darkdiv">
+      <div class="container fullscreen">
+        <div class="row">
+          <h5>Download</h5>
+          <div class="twelve columns flexcenter">
+            <p>NavSync is developed using my free time, I don't require a charge but any support is always appreciated. Feel free to buy me a beer :) </p>
+            
+            <form name="_xclick" action="https://www.paypal.com/us/cgi-bin/webscr" method="post">
+              <input type="hidden" name="cmd" value="_xclick" />
+              <input type="hidden" name="business" value="Ryan.2406@hotmail.co.uk" />
+              <input type="hidden" name="currency_code" value="GBP" />
+              <input type="hidden" name="item_name" value="NavSync" />
+              <input type="text" name="amount" value="" placeholder="Pay what you want!" />
+              <br>
+              <input style="margin-top: 20px;" type="image" src="img/paypal.png" border="0" name="submit"/>
+            </form>
+          </div> 
+          <div class="row">
+            <div class="six columns">
+              <h5>GitHub</h5>
+              <a href="https://github.com/rp4rk/navsync" target="_"><span class="entypo-github"></span></a>
+              </div>
+            <div class="six columns">
+              <h5>NPM</h5>
+              <a href="https://www.npmjs.com/package/navsync" target="_"><span class="entypo-cloud"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="./scripts/navsync.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+		<script>
+      hljs.initHighlightingOnLoad();
+			$(function() {
+				$(window).load(function() {  
+          $("nav").navSync({
+            highlightClass: "navsync-menu-highlight",
+            ignoreNavHeightHighlight: false,
+            ignoreNavHeightScroll: false,
+            animationTime: 1000
+          });
+        });
+			});
+		</script>
+	</body>
+</html>

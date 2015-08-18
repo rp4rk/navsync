@@ -1,0 +1,155 @@
+//Variables
+$light: darken(white, 3%);
+$dark: lighten(black, 20%);
+$medium: lighten(black, 35%);
+$highlight: #008B8B;
+$font-size: 12rem;
+$line-height: $font-size/4.5;
+$header-height: 90px;
+
+//Fonts
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+//NavSync Highlight
+.navsync-menu-highlight {
+  background-color: $highlight;
+  color: white;
+}
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+  font-size: 12rem;
+  width: 100%;
+}
+
+[class*="entypo-"] {
+  text-align: center;
+  width: 100%;
+  display: block;
+  transition: color 0.3s ease-in-out;
+  
+  &:hover {
+    color: $highlight;
+  }
+}
+
+.darkdiv a {
+  color: $light;
+}
+
+//General
+body {
+  background-color: $light;
+  color: $dark;
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: $dark;
+}
+
+form {
+  display: inline-block;
+  text-align: center;
+}
+
+.flexcenter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  padding: 4px;
+  background-color: $highlight;
+  font-weight: 700;
+  color: white;
+}
+
+.nocaps {
+  text-transform: none !important;
+}
+
+h5 {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  
+  &:after {
+    content: ' ';
+    width: 200px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: lighten($medium, 40%);
+    height: 1px;
+    display: block;
+  }
+}
+
+//Navigation
+nav {
+  height: $header-height;
+  background-color: white;
+  line-height: 90px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 5px 3px rgba(0,0,0,0.03);
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 700;
+  padding: 12px 15px 12px 15px;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  color: $dark;
+  
+  &:hover {
+    color: white;
+    background-color: $medium;
+  }
+}
+
+nav h1 {
+  display: inline;
+  margin: 0;
+  font-weight: 600;
+}                                 
+
+p {
+  line-height: $line-height;
+  color: $medium;
+}
+
+.right {
+  float: right;
+  display: inline;
+  clear: left;
+}
+
+//Container Stylings
+
+.fullscreen {
+  min-height: 100vh;
+  padding-top: $header-height + 20px;
+  padding-bottom: $header-height + 20px;
+}
+
+.darkdiv {
+  background-color: $dark;
+  
+  h1,h2,h3,h4,h5 {
+    color: $light;
+  }
+  
+  p {
+    color: darken($light, 40%);
+  }
+}
