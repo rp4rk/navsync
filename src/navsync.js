@@ -37,7 +37,6 @@
   // Avoid Plugin.prototype conflicts
   $.extend(Plugin.prototype, {
     init: function () {
-      console.log(this.settings);
       //Set our important items
       var navSyncSelection = $(this.element);
       var animationTime = this.settings.animationTime ? this.settings.animationTime : this._defaults.animationTime;
@@ -50,24 +49,24 @@
       //Find our links
       navSyncSelection.find("a").each(function () {
 
-        var hrefString = $(this).attr("href");
+        var hrefString = $(this).attr("href").replace("/","");
 
         if (hrefString.charAt(0) === "#") {
-          var anchor = $($(this).attr("href"));
+          var anchor = $(hrefString);
 
           watchedDivs.push([anchor, anchor.offset().top, anchor.offset().top + anchor.outerHeight(true), this]);
         }
 
       }).click(function (e) { //Handle presses if anchor
         
-        var hrefString = $(this).attr("href");
+        var hrefString = $(this).attr("href").replace("/","");
 
-        if (hrefString.charAt(0) === "#") {
+        if (hrefString.charAt(0) === "#" || hrefString.charAt(1) === "#") {
           e.preventDefault();
 
           //Scroll to element
           $("html, body").animate({
-            scrollTop: $($(this).attr("href")).offset().top - scrollOffset + 6
+            scrollTop: $(hrefString).offset().top - scrollOffset + 6
           }, animationTime);
 
         }
