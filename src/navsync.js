@@ -58,16 +58,19 @@
           watchedDivs.push([anchor, anchor.offset().top, anchor.offset().top + anchor.outerHeight(true), this]);
         }
 
-      }).click(function (e) { //Handle presses
+      }).click(function (e) { //Handle presses if anchor
+        
+        var hrefString = $(this).attr("href");
 
-        e.preventDefault();
+        if (hrefString.charAt(0) === "#") {
+          e.preventDefault();
 
-        //Scroll to element
-        $("html, body").animate({
-          scrollTop: $($(this).attr("href")).offset().top - scrollOffset + 6
-        }, animationTime);
+          //Scroll to element
+          $("html, body").animate({
+            scrollTop: $($(this).attr("href")).offset().top - scrollOffset + 6
+          }, animationTime);
 
-        console.log($($(this).attr("href")).offset().top);
+        }
       });
 
       //Highlight our first div
