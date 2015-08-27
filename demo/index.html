@@ -3,6 +3,10 @@
 
 <head>
   <title>NavSync</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="NavSync is a jQuery plugin to help synchronize your menu with your content."/>
+  <meta name="author" content="Ryan Park"/>
+  <meta name="theme-color" content="#ffffff"/>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
   <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
@@ -66,25 +70,6 @@
           <span class="tag">Integer</span>
           <pre><code class="javascript">$("nav").navSync({animationTime : 800});</code></pre>
           <p>Changes the default animation time for scrolling from 300ms to 800ms, generally scroll speeds of above a second are unwarranted. This should serve as a smell embellishment, not a super funky feature of your website.</p>
-
-          <h5 class="nocaps">ignoreNavHeightHighlight</h5>
-          <span class="tag">Example</span>
-          <span class="tag">Boolean</span>
-          <pre><code class="javascript">$("nav").navSync({ignoreNavHeightHighlight : true});</code></pre>
-          <p>By default NavSync will take into account the height of the header when applying the highlight class, if you aren't using a fixed header or simply dislike this behaviour this will turn it off.</p>
-
-          <h5 class="nocaps">ignoreNavHeightScroll</h5>
-          <span class="tag">Example</span>
-          <span class="tag">Boolean</span>
-          <pre><code class="javascript">$("nav").navSync({ignoreNavHeightScroll: true});</code></pre>
-          <p>By default NavSync will also take into account the height of the header when scrolling to a given anchor, this option can be disabled independently of the former option and is advised if that is the case.</p>
-
-          <h5 class="nocaps">disableDynamicPosition</h5>
-          <span class="tag">Example</span>
-          <span class="tag">Boolean</span>
-          <span class="tag">Performance Hungry Demon</span>
-          <pre><code class="javascript">$("nav").navSync({disableDynamicPosition: false});</code></pre>
-          <p>Enables dynamic position calculations, this is disabled by default for a VERY good reason. Only turn this on if you know what you're doing, or if you absolutely NEED positions calculated each scroll event.</p>
 
         </div>
       </div>
