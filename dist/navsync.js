@@ -25,7 +25,6 @@
       highlightClass: "navsync-menu-highlight",
       ignoreNavHeightHighlight: false,
       ignoreNavHeightScroll: false,
-      disableDynamicPosition: true,
       animationTime: 500
     };
 
@@ -47,68 +46,87 @@
     init: function () {
       //Set our important items
       var navSyncSelection = $(this.element);
-      var animationTime = this.settings.animationTime ? this.settings.animationTime : this._defaults.animationTime;
-      var headerOffset = this.settings.ignoreNavHeightHighlight ? 0 : navSyncSelection.height();
-      var scrollOffset = this.settings.ignoreNavHeightScroll ? 0 : navSyncSelection.height();
-      var dynamicPosition = this.settings.disableDynamicPosition ? true : false;
-      var highlightClass = this.settings.highlightClass ? this.settings.highlightClass : this._defaults.highlightClass;
-      var watchedDivs = [];
-
-      //Find our links
-      navSyncSelection.find("a").each(function () {
-
-        var hrefString = $(this).attr("href").replace("/","");
-
-        if (hrefString.charAt(0) === "#") {
-          var anchor = $(hrefString);
-
-          watchedDivs.push([anchor, anchor.offset().top, anchor.offset().top + anchor.outerHeight(true), this]);
-        }
-
-      }).click(function (e) { //Handle presses if anchor
-        
-        var hrefString = $(this).attr("href").replace("/","");
-
-        if (hrefString.charAt(0) === "#" || hrefString.charAt(1) === "#") {
+      this.highlightClass = this.settings.highlightClass ? this.settings.highlightClass : this._defaults.highlightClass;
+      
+      //Construct our watched divs
+      this.watchedDivs = this.buildWatchedDivs(navSyncSelection);
+      
+      //Handle Menu Clicks
+      this.watchedDivs.forEach(function(anchor) {
+        anchor[3].click(function (e) {
+          
+          //Unbind our scroll
+          $(window).unbind("scroll");
+          
+          //Prevent Default Action
           e.preventDefault();
-
-          //Scroll to element
-          $("html, body").animate({
-            scrollTop: $(hrefString).offset().top - scrollOffset + 6
-          }, animationTime);
-
-        }
-      });
-
+          this.scrollTo(anchor[1], 500);
+          
+        }.bind(this));
+      }.bind(this));
+      
+      
       //Highlight our first div
-      $(watchedDivs[0][3]).addClass(highlightClass);
+      this.checkForHighlight(this.watchedDivs);
 
-      //Scroll hook, check where we're at and determine highlight           
-      $(window).scroll(function () {
-        window.requestAnimationFrame(function() {
-          var scrollTop = $(window).scrollTop();
-          var i = 0;
-          var n = 0;
+      //Scroll hook       
+      $(window).bind("scroll",  function() { this.scrollFunc(); }.bind(this) );
+      
+    },
+    scrollFunc: function() {
+      window.requestAnimationFrame(function() {
 
-          //Recheck if enabled
-          if (dynamicPosition) {
-            for (n = 0; n < watchedDivs.length; n++) {
-              watchedDivs[n][1] = watchedDivs[n][0].offset().top;
-              watchedDivs[n][2] = watchedDivs[n][0].offset().top + watchedDivs[n][0].outerHeight(true);
-            }
-          }
+        this.checkForHighlight(this.watchedDivs);
 
-
-          for (i = 0; i < watchedDivs.length; i++) {
-            if (scrollTop < watchedDivs[i][2] - headerOffset && scrollTop + headerOffset >= watchedDivs[i][1]) {
-              $(watchedDivs[i][3]).addClass(highlightClass);
-
-            } else {
-              $(watchedDivs[i][3]).removeClass(highlightClass);
-            }
-          }
-        });
-      });
+      }.bind(this));
+    },
+    checkForHighlight: function(arrDivs) {
+      
+      
+      arrDivs.forEach(function(anchor) {
+        if (this.isInView(anchor[1], anchor[2])) {
+          anchor[3].addClass(this.highlightClass);
+        } else {
+          anchor[3].removeClass(this.highlightClass);
+        }
+      }.bind(this));
+    },
+    getAnchors: function(element) {
+      var arrAnchor = [];
+      
+      element.find("a").each(function(n, ele) { arrAnchor.push($(ele)); });
+    
+      return arrAnchor;
+    },
+    buildWatchedDivs: function(element) {
+      var divList = this.getAnchors(element)
+        .filter(function(item) {  
+          return this.isAnchor(item);
+        }.bind(this))
+        .map(function(item) {
+          var targetDiv = $(item.attr("href"));
+          return [targetDiv, targetDiv.offset().top, targetDiv.offset().top + targetDiv.outerHeight(true), item];
+        }.bind(this));
+      
+      return divList;
+    },
+    isInView: function(top, bottom) {
+      var vp_threshold = $(window).scrollTop() + $(window).height()/2;
+      
+      return (top <= vp_threshold && bottom >= vp_threshold);
+    },
+    isAnchor: function(link) {
+      var href_string = link.attr("href").replace("/","");
+      
+      return href_string.charAt(0) === "#";
+    },
+    scrollTo: function(y, animationTime) {
+      $("html, body").animate({
+        scrollTop: y
+      }, animationTime, function() {
+        $(window).bind("scroll",  function() { this.scrollFunc(); }.bind(this) );
+        this.checkForHighlight(this.watchedDivs);
+      }.bind(this));
     }
   });
 
