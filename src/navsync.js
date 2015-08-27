@@ -15,7 +15,6 @@
   var pluginName = "navSync",
     defaults = {
       highlightClass: "navsync-menu-highlight",
-      ignoreNavHeightHighlight: false,
       ignoreNavHeightScroll: false,
       animationTime: 500
     };
@@ -39,6 +38,7 @@
       //Set our important items
       var navSyncSelection = $(this.element);
       this.highlightClass = this.settings.highlightClass ? this.settings.highlightClass : this._defaults.highlightClass;
+      this.headerHeight = this.settings.ignoreNavHeightScroll ? 0 : navSyncSelection.height();
       
       //Construct our watched divs
       this.watchedDivs = this.buildWatchedDivs(navSyncSelection);
@@ -52,7 +52,7 @@
           
           //Prevent Default Action
           e.preventDefault();
-          this.scrollTo(anchor[1], 500);
+          this.scrollTo(anchor[1], 500, this.headerHeight);
           
         }.bind(this));
       }.bind(this));
@@ -96,7 +96,7 @@
           return this.isAnchor(item);
         }.bind(this))
         .map(function(item) {
-          var targetDiv = $(item.attr("href"));
+          var targetDiv = $(item.attr("href").replace("/", ""));
           return [targetDiv, targetDiv.offset().top, targetDiv.offset().top + targetDiv.outerHeight(true), item];
         }.bind(this));
       
@@ -112,9 +112,9 @@
       
       return href_string.charAt(0) === "#";
     },
-    scrollTo: function(y, animationTime) {
+    scrollTo: function(y, animationTime, headerHeight) {
       $("html, body").animate({
-        scrollTop: y
+        scrollTop: y - headerHeight
       }, animationTime, function() {
         $(window).bind("scroll",  function() { this.scrollFunc(); }.bind(this) );
         this.checkForHighlight(this.watchedDivs);
