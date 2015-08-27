@@ -70,6 +70,12 @@
           <span class="tag">Integer</span>
           <pre><code class="javascript">$("nav").navSync({animationTime : 800});</code></pre>
           <p>Changes the default animation time for scrolling from 300ms to 800ms, generally scroll speeds of above a second are unwarranted. This should serve as a smell embellishment, not a super funky feature of your website.</p>
+          
+          <h5 class="nocaps">ignoreNavHeightScroll</h5>
+          <span class="tag">Example</span>
+          <span class="tag">Boolean</span>
+          <pre><code class="javascript">$("nav").navSync({ignoreNavHeightScroll: true});</code></pre>
+          <p>By default NavSync will also take into account the height of the header when scrolling to a given anchor, this option can be disabled independently of the former option and is advised if that is the case.</p>
 
         </div>
       </div>

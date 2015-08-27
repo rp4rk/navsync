@@ -66,6 +66,11 @@ Changes the default class from "navsync-menu-highlight" to "highlight-menu-item"
 $("nav").navSync({animationTime : 800});
 ```
 Changes the default animation time for scrolling from 300ms to 800ms, generally scroll speeds of above a second are unwarranted. This should serve as a smell embellishment, not a super funky feature of your website.
+### ignoreNavHeightScroll
+```javascript
+$("nav").navSync({ignoreNavHeightScroll: true});
+```
+By default NavSync will also take into account the height of the header when scrolling to a given anchor, this option can be disabled independently of the former option and is advised if that is the case.
 
 ### Performance Tips
 Some CSS properties will severely affect draw performance, there are a few fixes to these however styling responsibly will always give the best framerate.
