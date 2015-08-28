@@ -36,19 +36,19 @@ Your HTML structure:
 </nav>
 
 <section id="anchor-1">
-  <p>I will be scrolled to!</o>
+  <p>I will be scrolled to!</p>
 <section>
 
 <section id="anchor-2">
-  <p>I will be scrolled to!</o>
+  <p>I will be scrolled to!</p>
 <section>
 
 <section id="anchor-3">
-  <p>I will be scrolled to!</o>
+  <p>I will be scrolled to!</p>
 <section>
 
 <section id="anchor-4">
-  <p>I will not be scrolled to!</o>
+  <p>I will not be scrolled to!</p>
 <section>
 ```
 

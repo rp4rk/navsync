@@ -1,6 +1,6 @@
 {
   "name": "navsync",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Sync navigation menus to page anchors",
   "keywords": [
     "jquery",
