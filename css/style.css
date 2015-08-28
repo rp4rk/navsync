@@ -6,6 +6,57 @@
   .navsync-menu-highlight:hover {
     background-color: #008B8B; }
 
+.splash {
+  background-color: #008B8B;
+  overflow: hidden;
+  position: relative; }
+  .splash img, .splash object {
+    max-height: 65vh;
+    position: absolute;
+    bottom: -5px;
+    margin: 0 auto 0 auto;
+    left: 50%;
+    transform: translateX(-50%); }
+    @media (max-width: 750px) {
+      .splash img, .splash object {
+        bottom: auto; } }
+
+#svg_19 {
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-animation: Sway 5s infinite ease-in-out alternate;
+  animation: Sway 5s infinite ease-in-out alternate; }
+
+@-webkit-keyframes Sway {
+  from {
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg); }
+  to {
+    -webkit-transform: rotate(5deg);
+    transform: rotate(5deg); } }
+
+@keyframes Sway {
+  from {
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg); }
+  to {
+    -webkit-transform: rotate(5deg);
+    transform: rotate(5deg); } }
+
+h1.fancy {
+  font-weight: 700;
+  color: white;
+  text-align: center; }
+  h1.fancy:after {
+    content: ' ';
+    width: 80%;
+    height: 2px;
+    background-color: white;
+    display: block;
+    z-index: 100;
+    margin: 20px auto 0 auto; }
+
 /* entypo */
 [class*="entypo-"]:before {
   font-family: 'entypo', sans-serif;
@@ -76,6 +127,11 @@ nav {
   z-index: 100;
   box-shadow: 0 5px 3px rgba(0, 0, 0, 0.03);
   transform: translateZ(0); }
+  @media (max-width: 750px) {
+    nav {
+      overflow-y: hidden;
+      overflow-x: scroll;
+      white-space: nowrap; } }
 
 nav a {
   text-decoration: none;
@@ -87,20 +143,29 @@ nav a {
   nav a:hover {
     color: white;
     background-color: #595959; }
+  @media (max-width: 750px) {
+    nav a {
+      padding: 5px; } }
 
 nav h1 {
   display: inline;
   margin: 0;
   font-weight: 600; }
+  @media (max-width: 750px) {
+    nav h1 {
+      display: none; } }
 
 p {
   line-height: 2.6666666667rem;
   color: #595959; }
 
-.right {
+.links {
   float: right;
   display: inline;
   clear: left; }
+  @media (max-width: 750px) {
+    .links {
+      float: none; } }
 
 .fullscreen {
   min-height: 100vh;
@@ -109,7 +174,11 @@ p {
 
 .darkdiv {
   background-color: #333333; }
-  .darkdiv h1, .darkdiv h2, .darkdiv h3, .darkdiv h4, .darkdiv h5 {
+  .darkdiv h1,
+  .darkdiv h2,
+  .darkdiv h3,
+  .darkdiv h4,
+  .darkdiv h5 {
     color: #f7f7f7; }
   .darkdiv p {
     color: #919191; }

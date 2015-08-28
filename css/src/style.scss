@@ -1,4 +1,4 @@
-//Variables
+// Variables
 $light: darken(white, 3%);
 $dark: lighten(black, 20%);
 $medium: lighten(black, 35%);
@@ -7,21 +7,97 @@ $font-size: 12rem;
 $line-height: $font-size/4.5;
 $header-height: 90px;
 
-//Fonts
+// Fonts
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
 @import url(http://weloveiconfonts.com/api/?family=entypo);
 
-//NavSync Highlight
+// NavSync Highlight
 .navsync-menu-highlight {
   background-color: $highlight;
   color: white;
-  
   &:hover {
     background-color: $highlight;
   }
 }
 
+// Logo splash
+.splash {
+  background-color: $highlight;
+  overflow: hidden;
+  position: relative;
+  
+  img, object {
+    max-height: 65vh;
+    position: absolute;
+    bottom: -5px;
+    margin: 0 auto 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    @media (max-width: 750px) {
+     bottom: auto;
+   }
+  }
+  
+   
+}
+
+// SVG animation
+#svg_19 {
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-animation: Sway 5s infinite ease-in-out alternate;
+  animation: Sway 5s infinite ease-in-out alternate;
+}
+
+@-webkit-keyframes Sway {
+
+	from {
+		-webkit-transform: rotate(-5deg);
+		transform: rotate(-5deg);
+	}
+
+	to {
+		-webkit-transform: rotate(5deg);
+		transform: rotate(5deg);
+	}
+
+}
+
+@keyframes Sway {
+
+	from {
+		-webkit-transform: rotate(-5deg);
+		transform: rotate(-5deg);
+	}
+
+	to {
+		-webkit-transform: rotate(5deg);
+		transform: rotate(5deg);
+	}
+
+}
+
+h1.fancy {
+  font-weight: 700;
+  color: white;
+  text-align: center;
+
+  &:after {
+    content: ' ';
+    width: 80%;
+    height: 2px;
+    background-color: white;
+    display: block;
+    z-index: 100;
+    margin: 20px auto 0 auto;
+  }
+}
+
+
 /* entypo */
+
 [class*="entypo-"]:before {
   font-family: 'entypo', sans-serif;
   font-size: 12rem;
@@ -33,7 +109,6 @@ $header-height: 90px;
   width: 100%;
   display: block;
   transition: color 0.3s ease-in-out;
-  
   &:hover {
     color: $highlight;
   }
@@ -84,7 +159,6 @@ h5 {
   text-transform: uppercase;
   text-align: center;
   font-weight: 700;
-  
   &:after {
     content: ' ';
     width: 200px;
@@ -101,12 +175,18 @@ h5 {
 nav {
   height: $header-height;
   background-color: white;
-  line-height: 90px;
+  line-height: $header-height;
   position: fixed;
   width: 100%;
   z-index: 100;
-  box-shadow: 0 5px 3px rgba(0,0,0,0.03);
+  box-shadow: 0 5px 3px rgba(0, 0, 0, 0.03);
   transform: translateZ(0);
+  
+  @media (max-width: 750px) {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
 }
 
 nav a {
@@ -121,27 +201,40 @@ nav a {
     color: white;
     background-color: $medium;
   }
+  
+  @media (max-width: 750px) {
+    padding: 5px;
+  }
 }
 
 nav h1 {
   display: inline;
   margin: 0;
   font-weight: 600;
-}                                 
+  
+  @media (max-width: 750px) {
+    display: none;
+  }
+
+}
+
 
 p {
   line-height: $line-height;
   color: $medium;
 }
 
-.right {
+.links {
   float: right;
   display: inline;
   clear: left;
+  
+  @media (max-width: 750px) {
+    float: none;
+  }
 }
 
 //Container Stylings
-
 .fullscreen {
   min-height: 100vh;
   padding-top: $header-height + 20px;
@@ -150,11 +243,13 @@ p {
 
 .darkdiv {
   background-color: $dark;
-  
-  h1,h2,h3,h4,h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     color: $light;
   }
-  
   p {
     color: darken($light, 40%);
   }
