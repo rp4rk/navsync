@@ -3,10 +3,11 @@
 
 <head>
   <title>NavSync</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="NavSync is a jQuery plugin to help synchronize your menu with your content."/>
-  <meta name="author" content="Ryan Park"/>
-  <meta name="theme-color" content="#ffffff"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NavSync is a jQuery plugin to help synchronize your menu with your content." />
+  <meta name="author" content="Ryan Park" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
   <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
@@ -18,7 +19,7 @@
   <nav>
     <div class="container">
       <h1>NavSync</h1>
-      <div class="right">
+      <div class="links">
         <a href="#getting-started">Getting Started</a>
         <a href="#advanced">Advanced</a>
         <a href="#contact">Contact</a>
@@ -26,6 +27,15 @@
       </div>
     </div>
   </nav>
+  
+  <div class="u-full-width splash">
+    <div class="container fullscreen splash">
+      <h1 class="fancy">Buttery Smooth Navigation Management</h1>
+      <object data="img/logo.svg" type="image/svg+xml">
+        <img src="img/logo.svg" />
+      </object>
+    </div>
+  </div>
 
   <div id="getting-started" class="container fullscreen">
     <h1>Getting Started</h1>
@@ -70,7 +80,7 @@
           <span class="tag">Integer</span>
           <pre><code class="javascript">$("nav").navSync({animationTime : 800});</code></pre>
           <p>Changes the default animation time for scrolling from 300ms to 800ms, generally scroll speeds of above a second are unwarranted. This should serve as a smell embellishment, not a super funky feature of your website.</p>
-          
+
           <h5 class="nocaps">ignoreNavHeightScroll</h5>
           <span class="tag">Example</span>
           <span class="tag">Boolean</span>
