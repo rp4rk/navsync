@@ -34,63 +34,63 @@
 
   // Avoid Plugin.prototype conflicts
   $.extend(Plugin.prototype, {
-    
+
     // Our init function
     init: function () {
-      
+
       // Set our target nav element, highlight class, header height
       var navSyncSelection = $(this.element);
       this.highlightClass = this.settings.highlightClass ? this.settings.highlightClass : this._defaults.highlightClass;
       this.initHeaderHeight(navSyncSelection);
-      
+
       // Re-initialize due to window resize
       $(window).resize(function() {
-        
+
         this.initHeaderHeight(navSyncSelection);
         this.watchedDivs = this.buildWatchedDivs(navSyncSelection);
         this.checkForHighlight(this.watchedDivs);
-        
+
         // Clear our anchor bindings
         this.watchedDivs.forEach( function (anchor) {
           anchor[3].unbind("click");
         });
-        
+
         // Reset
         this.initClickBinding();
-        
+
       }.bind(this));
-      
+
       // Construct our watched divs
       this.watchedDivs = this.buildWatchedDivs(navSyncSelection);
-      
+
       // Handle Menu Clicks
       this.initClickBinding();
-      
+
       // Initial highlight
       this.checkForHighlight(this.watchedDivs);
 
-      // Initial scroll hook      
+      // Initial scroll hook
       $(window).bind("scroll",  function() { this.scrollFunc(); }.bind(this) );
-      
-      
+
+
     },
     // Sets our header height
     initHeaderHeight: function(element) {
 
       this.headerHeight = this.settings.ignoreNavHeightScroll ? 0 : element.height();
-      
+
     },
     // Applies appropriate highlight each frame
     scrollFunc: function() {
-      
+
       window.requestAnimationFrame(function() {
         this.checkForHighlight(this.watchedDivs);
       }.bind(this));
-      
+
     },
-    // Applies approrpriate highlight 
+    // Applies approrpriate highlight
     checkForHighlight: function(arrDivs) {
-    
+
       arrDivs.forEach(function(anchor) {
         if (this.isInView(anchor[1], anchor[2])) {
           anchor[3].addClass(this.highlightClass);
@@ -98,76 +98,76 @@
           anchor[3].removeClass(this.highlightClass);
         }
       }.bind(this));
-      
+
     },
     // Returns an array of anchors in the specified element
     getAnchors: function(element) {
-      
+
       var arrAnchor = [];
       element.find("a").each(function(n, ele) { arrAnchor.push($(ele)); });
       return arrAnchor;
-      
+
     },
     // Returns an array with each div we care about
     // [targetDiv, targetDivTop, targetDivBottom, targetDivLink]
     buildWatchedDivs: function(element) {
-      
+
       var divList = this.getAnchors(element)
-        .filter(function(item) {  
+        .filter(function(item) {
           return this.isAnchor(item);
         }.bind(this))
         .map(function(item) {
           var targetDiv = $(item.attr("href").replace("/", ""));
           return [targetDiv, targetDiv.offset().top, targetDiv.offset().top + targetDiv.outerHeight(true), item];
         }.bind(this));
-      
+
       return divList;
-      
+
     },
     // Checks if the coordinates supplied are within the field of view
     // In this case the field of view is in the middle of the screen
     isInView: function(top, bottom) {
-      
+
       var vp_threshold = $(window).scrollTop() + $(window).height()/2;
       return (top <= vp_threshold && bottom >= vp_threshold);
-      
+
     },
     // Checks if the link supplied is an anchor on the current page
     // Returns boolean
     isAnchor: function(link) {
-      
+
       var href_string = link.attr("href").replace("/","");
       return href_string.charAt(0) === "#";
-      
+
     },
     // Scrolls to the supplied Y coordinate with the given time.
     scrollTo: function(y, animationTime, headerHeight) {
-      
+
       $("html, body").animate({
-        scrollTop: y - headerHeight
+        scrollTop: y - headerHeight - (this.settings.offset || 0)
       }, animationTime, function() {
         $(window).bind("scroll",  function() { this.scrollFunc(); }.bind(this) );
         this.checkForHighlight(this.watchedDivs);
       }.bind(this));
-      
+
     },
     // Manages click binds
     initClickBinding: function() {
-      
+
       this.watchedDivs.forEach(function(anchor) {
-        
+
         anchor[3].click(function (e) {
-          
+
           // Unbind our scroll
           $(window).unbind("scroll");
-          
+
           // Prevent Default Action and scrollTo
           e.preventDefault();
           this.scrollTo(anchor[1], 500, this.headerHeight);
-          
+
         }.bind(this));
       }.bind(this));
-      
+
     }
   });
 
